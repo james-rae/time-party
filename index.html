@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <title>Time Party</title>
+        <style>
+            @font-face {
+                font-family: cinzel;
+                src: url('font/Cinzel-Regular.ttf');
+            }
+
+            body {
+                margin: 0px 0px;
+                background-color: black;
+                color: lime;
+                margin-left: 5px;
+            }
+
+            button {
+                background-color: lime;
+                color: black;
+                border-color: darkgreen;
+            }
+
+            #time {
+                font-family: 'cinzel';
+                font-size: 84pt;
+            }
+        </style>
+    </head>
+    <body>
+        <script>
+            var start = 0;
+
+            function draw() {
+                var mins = Math.round((Date.now() - start) / 60000).toString();
+                document.getElementById('time').innerHTML = 'Mins: ' + mins;
+                document.title = 'Time Party - ' + mins;
+            }
+
+            setInterval(() => {
+                draw();
+            }, 60000);
+
+            function reset() {
+                start = Date.now();
+                draw();
+            }
+
+            window.onload = () => {
+                reset();
+            };
+        </script>
+        <p id="time">0</p>
+        <button onclick="reset()">Reset</button>
+    </body>
+</html>
